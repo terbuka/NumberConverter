@@ -25,11 +25,13 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextWatcher;
 import android.text.Editable;
 import android.text.InputType;
-import android.widget.Toast;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 
 public class MainActivity extends AppCompatActivity {
 	/** Called when the activity is first created. */
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 		til_oct = new TextInputLayout(this);
 		til_hex = new TextInputLayout(this);
 		
+		TextView unpam = new TextView(this);
+		
 		LayoutParams fill_h = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		
 		main_layout.setOrientation(LinearLayout.VERTICAL);
@@ -74,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 		til_oct.setLayoutParams(fill_h);
 		til_hex.setLayoutParams(fill_h);
 		
+		unpam.setLayoutParams(fill_h);
+		
 		in_des.setHint("Decimal (10)");
 		in_bin.setHint("Binary (2)");
 		in_oct.setHint("Octal (8)");
@@ -88,10 +94,15 @@ public class MainActivity extends AppCompatActivity {
 		til_oct.addView(in_oct);
 		til_hex.addView(in_hex);
 		
+		unpam.setMovementMethod(LinkMovementMethod.getInstance());
+		unpam.setText(Html.fromHtml("<b>UNPAM V.117</b><br/><b>Author:</b> Hamba Allah<br/><b>Licensed:</b> <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GPLv3 (Free Software)</a><br/><b>Hacking (sources):</b> <a href=\"https://github.com/terbuka/NumberConverter\">https://github.com/terbuka/NumberConverter</a>"));
+		
 		main_layout.addView(til_des);
 		main_layout.addView(til_bin);
 		main_layout.addView(til_oct);
 		main_layout.addView(til_hex);
+		
+		main_layout.addView(unpam);
 		
 		setContentView(main_layout);
 		
