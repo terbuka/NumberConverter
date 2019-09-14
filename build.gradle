@@ -1,0 +1,78 @@
+/*
+ * build.gradle
+ * This file is part of Number Converter
+ *
+ * Copyright (C) 2019 - Hamba Allah <kunyuk@disroot.org>
+ *
+ * Number Converter is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Number Converter is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Number Converter. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+buildscript {
+	repositories {
+		google()
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:3.1.+'
+	}
+}
+
+allprojects {
+	repositories {
+		jcenter()
+		mavenCentral()
+		maven {
+			url 'https://maven.google.com'
+		}
+	}
+}
+
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 28
+	buildToolsVersion '27.0.3'
+
+	defaultConfig {
+		applicationId 'com.panjatpinang.nconverter'
+		minSdkVersion 23
+		targetSdkVersion 28
+		versionCode 1
+		versionName '1.0.0'
+		archivesBaseName = "NumberConverter-v$versionName-$versionCode"
+	}
+
+	buildTypes {
+		release {
+			shrinkResources true
+			minifyEnabled true
+			useProguard true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			shrinkResources false
+			minifyEnabled false
+			useProguard false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation 'com.android.support:appcompat-v7:28.+'
+	implementation 'com.android.support.constraint:constraint-layout:1.1.+'
+	implementation 'com.android.support:recyclerview-v7:28.+'
+	implementation 'com.android.support:design:28.+'
+}
